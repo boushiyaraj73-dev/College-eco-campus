@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Issue Tracking | QR EcoCampus</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+  <script src="config.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body data-page="issues">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html"><span class="brand-icon">♻</span><span><strong>QR EcoCampus</strong><small>SMART GREEN CAMPUS</small></span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="nav-link" href="index.html"><span class="nav-icon">▦</span>Dashboard</a>
+        <a class="nav-link" href="report.html"><span class="nav-icon">＋</span>Report an Issue</a>
+        <a class="nav-link" href="qr-codes.html"><span class="nav-icon">▦</span>QR Codes</a>
+        <a class="nav-link" href="track.html"><span class="nav-icon">◎</span>Track Status</a>
+        <a class="nav-link active" href="issues.html"><span class="nav-icon">☷</span>Issue Tracking</a>
+        <a class="nav-link" href="locations.html"><span class="nav-icon">⌖</span>Campus Locations</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="green-card"><span class="green-card-icon">✦</span><strong>Make campus greener</strong><p>Every small report can create a positive change.</p></div><div class="sidebar-foot">QR EcoCampus <span>Version 2.0</span></div></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar"><button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation">☰</button><div class="topbar-title"><span class="eyebrow">MONITOR AND FOLLOW UP</span><h1>Issue Tracking</h1></div><div class="topbar-right"><span class="online-dot"></span><span>Live</span><div class="avatar">EC</div></div></header>
+      <div class="page-content">
+        <div class="page-intro"><div><span class="eyebrow">REPORT MANAGEMENT</span><h2>Every issue deserves a follow-up.</h2><p>Search reports, filter by status, update progress, and export your records.</p></div><a class="button button-primary" href="report.html">＋ New report</a></div>
+
+        <section class="stats-grid compact-stats"><article class="stat-card"><div class="stat-top"><span>Total reports</span><span class="stat-icon green">▤</span></div><strong id="totalReports">0</strong><small>All submitted issues</small></article><article class="stat-card"><div class="stat-top"><span>Pending</span><span class="stat-icon amber">◷</span></div><strong id="pendingReports">0</strong><small>Awaiting action</small></article><article class="stat-card"><div class="stat-top"><span>In progress</span><span class="stat-icon blue">↻</span></div><strong id="progressReports">0</strong><small>Currently being handled</small></article><article class="stat-card"><div class="stat-top"><span>Resolved</span><span class="stat-icon purple">✓</span></div><strong id="resolvedReports">0</strong><small>Marked complete</small></article></section>
+
+        <section class="panel">
+          <div class="section-heading"><div><span class="eyebrow">ALL SUBMISSIONS</span><h2>Reports register</h2></div><button id="exportCsv" class="button button-secondary" type="button">Export CSV ↓</button></div>
+          <div class="filters"><label class="filter-label" for="statusFilter">Filter by status<select id="statusFilter"><option value="All">All statuses</option><option>Pending</option><option>In Progress</option><option>Resolved</option></select></label><label class="filter-label" for="searchInput">Search reports<input id="searchInput" type="search" placeholder="Report ID, location, category..."></label><button id="clearReports" class="button button-danger-outline" type="button">Clear demo reports</button></div>
+          <div class="table-wrap"><table><thead><tr><th>Report</th><th>Location</th><th>Issue details</th><th>Priority</th><th>Status</th><th>Date</th><th>Action</th></tr></thead><tbody id="reportRows"></tbody></table></div>
+          <p id="emptyState" class="empty-state">No reports match your search. Submit an issue or change your filters.</p>
+        </section>
+        <footer class="page-footer"><span>QR EcoCampus · Student sustainability project</span><span>Version 2.0 · Browser-local demo</span></footer>
+      </div>
+    </main>
+  </div>
+  <dialog id="statusDialog" class="status-dialog"><form method="dialog" id="statusForm"><span class="eyebrow">UPDATE REPORT</span><h2>Change report status</h2><p id="dialogReportLabel" class="muted"></p><label for="newStatus">Status</label><select id="newStatus"><option>Pending</option><option>In Progress</option><option>Resolved</option></select><label for="resolutionNote">Resolution note <span class="optional">(optional)</span></label><textarea id="resolutionNote" rows="3" maxlength="300" placeholder="Add an update or action taken"></textarea><div class="dialog-actions"><button class="button button-secondary" value="cancel">Cancel</button><button id="saveStatus" class="button button-primary" value="default">Save status</button></div></form></dialog>
+</body>
+</html>

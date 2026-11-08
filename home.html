@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QR EcoCampus | Home</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Manrope:wght@700;800&display=swap');
+:root{--forest:#0b2e1f;--moss:#2f6b3a;--leaf:#7cc46a;--lime:#d4ea7a;--earth:#6b4a2f;--clay:#b5835a;--sand:#f6eedb;--water:#3f9bb0;--sun:#f2c14e}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:'DM Sans',Arial,sans-serif;color:#fff;overflow:hidden;background:var(--forest)}
+a{color:inherit;text-decoration:none}
+.bg{position:fixed;inset:0;opacity:0;transition:opacity .9s}
+.bg.on{opacity:1}
+.b0{background:radial-gradient(circle at 78% 22%,#f2c14e 0,#f2c14e 7%,transparent 8%),radial-gradient(circle at 78% 22%,#f2c14e55 0,transparent 28%),linear-gradient(180deg,#1d5a3d,#0b2e1f)}
+.b1{background:linear-gradient(160deg,#3f9bb0,#1d6b66 55%,#0f4a3c)}
+.b2{background:linear-gradient(160deg,#7cc46a,#2f6b3a 60%,#17432c)}
+.b3{background:linear-gradient(160deg,#b5835a,#6b4a2f 60%,#3d2a1a)}
+.b4{background:linear-gradient(160deg,#f6eedb,#dbe9c4 60%,#a9d08f)}
+.hills{position:fixed;left:-10%;right:-10%;bottom:0;height:26vh;pointer-events:none}
+.hills::before,.hills::after{content:"";position:absolute;bottom:-12vh;border-radius:50%}
+.hills::before{left:0;width:65%;height:34vh;background:#2f6b3a99}
+.hills::after{right:0;width:70%;height:30vh;background:#0b2e1faa}
+.top{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 20px 10px}
+.brand{font:800 17px Manrope,sans-serif}.brand i{font-style:normal;margin-right:6px}
+.skip{font-size:12px;font-weight:700;padding:8px 14px;border-radius:99px;background:#ffffff26}
+.slide{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:84px 22px 150px;overflow:auto;opacity:0;transform:translateX(70px);transition:opacity .6s,transform .6s;pointer-events:none}
+.slide.on{opacity:1;transform:none;pointer-events:auto}
+.slide.past{transform:translateX(-70px)}
+.in{max-width:640px;width:100%}
+.tag{display:inline-block;padding:7px 14px;border:1px solid #ffffff55;border-radius:99px;font-size:11px;letter-spacing:1.6px;color:var(--lime);margin-bottom:18px}
+h1,h2{font-family:Manrope,sans-serif;letter-spacing:-1.5px;margin:0 0 14px;line-height:1.06}
+h1{font-size:clamp(36px,8vw,66px);font-weight:800}h1 span{color:var(--lime)}
+h2{font-size:clamp(30px,6vw,48px);font-weight:800}
+p{line-height:1.7;font-size:16px;color:#ffffffd9;margin:0 auto 24px;max-width:480px}
+.orb{width:104px;height:104px;margin:0 auto 18px;display:grid;place-items:center;border-radius:50%;background:#ffffff26;border:2px solid #ffffff66;font-size:48px;animation:bob 4s ease-in-out infinite}
+.num{font:800 14px Manrope;letter-spacing:3px;color:var(--lime);margin-bottom:8px}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.btn{display:inline-block;border:0;cursor:pointer;padding:14px 26px;border-radius:14px;font:700 14px 'DM Sans';background:var(--sun);color:#3d2a1a;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 22px #0004}
+.btn.alt{background:#ffffff26;color:#fff;border:1.5px solid #ffffff66;margin-left:8px}
+.quick{display:flex;gap:8px;background:#ffffff22;padding:8px;border-radius:16px;border:1px solid #ffffff44;margin-top:6px}
+.quick input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff;padding:11px;font-size:15px}
+.quick input::placeholder{color:#ffffffaa}
+.quick button{border:0;border-radius:10px;padding:0 18px;font-weight:700;background:var(--sun);color:#3d2a1a;cursor:pointer}
+.s4{color:#14392a}.s4 h2{color:#14392a}.s4 p{color:#3b5a48}.s4 .num,.s4 .tag{color:#2f6b3a;border-color:#2f6b3a66}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;text-align:left;margin-top:10px}
+.card{background:#fff;border-radius:18px;padding:16px;box-shadow:0 8px 22px #2f6b3a22;transition:transform .25s,background .25s;border-bottom:4px solid var(--leaf)}
+.card:hover{transform:translateY(-6px) rotate(-1deg);background:#f1f9e4}
+.card i{font-style:normal;font-size:26px;display:block;margin-bottom:6px}
+.card b{display:block;font:800 15px Manrope;color:#14392a}.card span{font-size:12px;color:#5d7a69}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:center;gap:12px;justify-content:center;padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(0deg,#0b2e1fcc,transparent)}
+.path{position:relative;display:flex;gap:clamp(12px,5vw,44px)}
+.path::before,.path i.fill{content:"";position:absolute;top:20px;left:20px;right:20px;height:4px;border-radius:4px;background:#ffffff44}
+.path i.fill{right:auto;width:0;background:var(--lime);transition:width .6s}
+.node{position:relative;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;font-size:19px;background:#0b2e1f;color:#fff;box-shadow:0 0 0 3px #ffffff44;transition:.3s}
+.node.done{box-shadow:0 0 0 3px var(--lime)}
+.node.on{background:var(--lime);transform:scale(1.3);box-shadow:0 0 0 4px #fff}
+.arrow{width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;font-size:20px;font-weight:800;background:var(--sun);color:#3d2a1a}
+.arrow:disabled{opacity:.3;cursor:default}
+@media(max-width:520px){.skip{display:none}.btn.alt{margin:10px 0 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg b0 on"></div><div class="bg b1"></div><div class="bg b2"></div><div class="bg b3"></div><div class="bg b4"></div>
+<div class="hills"></div>
+<div class="top"><div class="brand"><i>♻</i>QR EcoCampus</div><a class="skip" href="index.html">Skip to dashboard →</a></div>
+
+<main>
+ <section class="slide on"><div class="in">
+  <span class="tag">MOTHER EARTH · GREEN CAMPUS</span>
+  <h1>Care for the campus <span>like it's home.</span></h1>
+  <p>Spot a problem, scan the QR, and follow your complaint until it is resolved. Small reports grow into a greener campus.</p>
+  <button class="btn" data-next>Begin the journey →</button><a class="btn alt" href="report.html">Report now</a>
+ </div></section>
+
+ <section class="slide"><div class="in">
+  <div class="orb">📱</div><div class="num">STEP 01</div><h2>Scan the QR</h2>
+  <p>Every campus spot has its own QR. Scan it and the form opens with that location already selected.</p>
+  <a class="btn alt" style="margin:0" href="qr-codes.html">Get QR codes</a>
+ </div></section>
+
+ <section class="slide"><div class="in">
+  <div class="orb">🌿</div><div class="num">STEP 02</div><h2>Report the issue</h2>
+  <p>Describe what you saw and submit. You instantly receive a report ID to keep.</p>
+  <a class="btn" href="report.html">＋ Report an issue</a>
+ </div></section>
+
+ <section class="slide"><div class="in">
+  <div class="orb">🌳</div><div class="num">STEP 03</div><h2>Track until resolved</h2>
+  <p>Enter your report ID to see if it is Pending, In Progress or Resolved.</p>
+  <form class="quick" onsubmit="event.preventDefault();var v=this.id.value.trim();if(v)location.href='track.html?id='+encodeURIComponent(v);">
+   <input name="id" placeholder="Report ID, e.g. ECO-12345678-ABC" aria-label="Report ID" required><button>Check ↗</button>
+  </form>
+ </div></section>
+
+ <section class="slide s4"><div class="in">
+  <span class="tag">EXPLORE</span><h2>The whole campus, one tap away.</h2>
+  <div class="grid">
+   <a class="card" href="report.html"><i>＋</i><b>Report an Issue</b><span>Submit a complaint</span></a>
+   <a class="card" href="track.html"><i>◎</i><b>Track Status</b><span>Follow your complaint</span></a>
+   <a class="card" href="qr-codes.html"><i>▦</i><b>QR Codes</b><span>Print location QRs</span></a>
+   <a class="card" href="issues.html"><i>☷</i><b>Issue Tracking</b><span>Campus team view</span></a>
+   <a class="card" href="locations.html"><i>⌖</i><b>Locations</b><span>Places and report counts</span></a>
+   <a class="card" href="index.html"><i>▤</i><b>Dashboard</b><span>Live totals</span></a>
+  </div>
+ </div></section>
+</main>
+
+<nav class="nav" aria-label="Page navigation">
+ <button class="arrow" id="prev" aria-label="Previous">←</button>
+ <div class="path" id="path"><i class="fill" id="fill"></i></div>
+ <button class="arrow" id="next" aria-label="Next">→</button>
+</nav>
+
+<script>
+var slides=[].slice.call(document.querySelectorAll('.slide')),bgs=[].slice.call(document.querySelectorAll('.bg')),
+icons=['🌰','🌱','🌿','🌳','🌍'],names=['Welcome','Scan','Report','Track','Explore'],i=0,path=document.getElementById('path');
+icons.forEach(function(ic,n){var b=document.createElement('button');b.className='node';b.textContent=ic;b.title=names[n];b.setAttribute('aria-label',names[n]);b.onclick=function(){go(n)};path.appendChild(b)});
+var nodes=[].slice.call(path.querySelectorAll('.node'));
+function go(n){i=Math.max(0,Math.min(slides.length-1,n));
+ slides.forEach(function(s,k){s.classList.toggle('on',k===i);s.classList.toggle('past',k<i)});
+ bgs.forEach(function(b,k){b.classList.toggle('on',k===i)});
+ nodes.forEach(function(d,k){d.classList.toggle('on',k===i);d.classList.toggle('done',k<i)});
+ document.getElementById('fill').style.width='calc('+(i/(slides.length-1))*100+'% - '+(i/(slides.length-1))*40+'px)';
+ document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===slides.length-1}
+document.getElementById('prev').onclick=function(){go(i-1)};document.getElementById('next').onclick=function(){go(i+1)};
+document.querySelector('[data-next]').onclick=function(){go(1)};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(i+1);if(e.key==='ArrowLeft')go(i-1)});
+var x0=null;document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>60)go(i+(d<0?1:-1));x0=null});
+go(0);
+</script>
+</body>
+</html>

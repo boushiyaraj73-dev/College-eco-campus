@@ -1,0 +1,47 @@
+SETUP - make QR scanning work on other phones + see reports on your laptop
+==========================================================================
+You need 2 free things: (A) a Google Sheet as the database, (B) free website hosting.
+
+A) DATABASE (Google Sheet + Apps Script)  ~5 minutes
+1. Go to sheets.google.com and create a new blank spreadsheet. Name it "EcoCampus Reports".
+2. Menu: Extensions > Apps Script.
+3. Delete everything there. Open Code.gs from this folder in Notepad, copy ALL, paste it in.
+4. Change  'change-this-password'  to your own admin password. Click Save.
+5. Click Deploy > New deployment > gear icon > Web app.
+   - Execute as: Me
+   - Who has access: Anyone
+   Click Deploy and allow permissions (Advanced > Go to project > Allow).
+6. Copy the Web app URL (ends with /exec).
+7. Open config.js in Notepad and paste it:
+   window.ECO_API_URL = 'https://script.google.com/macros/s/XXXX/exec';
+   Save.
+(If you edit Code.gs later: Deploy > Manage deployments > Edit > New version > Deploy.)
+
+B) HOSTING (needs HTTPS so phones can open it)  ~3 minutes
+Easiest: Netlify Drop
+1. Go to app.netlify.com/drop
+2. Drag this whole QR_EcoCampus_V2 folder onto the page.
+3. You get a link like https://your-name.netlify.app  (you can rename it in Site settings).
+(GitHub Pages also works.)
+
+C) USE IT
+1. On your laptop open  https://your-name.netlify.app/qr-codes.html
+   (open it from the hosted link, NOT from the folder on your computer).
+2. Pick College Office or College Toilet, click Download QR (PNG), print it.
+3. Anyone scans it -> report form opens with that location already selected -> Submit.
+4. On your laptop open Issue Tracking (or Dashboard). Enter your admin password.
+   - New reports appear (page refreshes by itself every 30 seconds).
+   - Click Update to change status / add a resolution note.
+   - Reports are also visible directly in your Google Sheet.
+
+NOTES
+- If you change the hosting link later, download the QR codes again.
+- Only people with the admin password can view/update/clear reports. Anyone can submit.
+- Leave config.js empty to go back to the old single-browser demo mode.
+
+TRACK STATUS (new)
+- After submitting, the person gets a report ID and a "Track this report" link.
+- Track Status page (track.html): enter the report ID to see Pending / In Progress / Resolved and the admin's note.
+- This device also remembers the IDs it submitted, so they show under "My reports".
+- IMPORTANT: you must redeploy Code.gs: Deploy > Manage deployments > Edit > New version > Deploy.
+- Public users only see the status of the ID they type. No password, no other reports, no names are exposed.
